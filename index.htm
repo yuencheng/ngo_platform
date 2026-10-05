@@ -42,7 +42,7 @@
 
                     <div class="hero-wheel">
                         <div class="sdgs" id="sdgs"></div>
-                        <p class="meta hero-wheel-hint">點選圓盤上的編號，即可依 SDGs 篩選專案列表</p>
+                        <p class="meta hero-wheel-hint">點選圓盤上的編號，即可依 SDGs 篩選專案與提案列表</p>
                     </div>
                 </div>
             </section>
@@ -189,7 +189,7 @@
                             <p class="eyebrow eyebrow-muted">提案列表</p>
                             <h2>NGO 提案總覽</h2>
                         </div>
-                        <p class="lead section-note">尚在尋找合作夥伴的 NGO 提案，歡迎企業洽詢合作。</p>
+                        <p class="lead section-note">尚在尋找合作夥伴的 NGO 提案，歡迎企業洽詢合作。點選上方 SDGs 圓盤的編號，或使用下方篩選列的「加入條件」，即可依目標篩選提案。</p>
                     </div>
 
                     <div class="proposals">
@@ -276,6 +276,9 @@
                         <span class="project-more" aria-hidden="true">查看詳細資訊</span>
                     </section>
                     </div>
+
+                    <!-- 篩選後若沒有符合已選目標的提案時顯示 -->
+                    <p class="filter-empty" id="proposalEmpty" hidden>目前沒有提案對應已選取的 SDGs 目標。</p>
                 </div>
             </section>
         </div>
@@ -982,6 +985,12 @@
             btn.setAttribute("aria-selected", on ? "true" : "false");
             document.getElementById(btn.dataset.tab).hidden = !on;
         });
+
+        // SDGs 篩選列只有一個，跟著目前的分頁搬到該分頁的卡片列表上方，
+        // 篩選條件在兩個分頁之間保持一致
+        var bar = document.getElementById("filterBar");
+        var list = document.querySelector("#" + tab + " .projects, #" + tab + " .proposals");
+        if (bar && list) list.parentNode.insertBefore(bar, list);
     }
 
     // 導覽列點「專案列表」／「提案列表」（#projects / #proposal）時同步切換分頁

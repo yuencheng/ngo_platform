@@ -46,7 +46,8 @@
     var filterBar = document.getElementById("filterBar");
     var filterLabel = document.getElementById("filterLabel");
     var filterClear = document.getElementById("filterClear");
-    var emptyMsg = document.getElementById("filterEmpty");
+    // 專案成果、提案列表各有一個「無符合項目」提示
+    var emptyMsgs = document.querySelectorAll(".filter-empty");
     var addToggle = document.getElementById("filterAddToggle");
     var menu = document.getElementById("filterMenu");
     if (!filterBar || !filterLabel || !filterClear) return;
@@ -126,30 +127,33 @@
             filterLabel.innerHTML =
                 '<span class="filter-bar-hint">尚未選擇條件 — 點「加入條件」，或點選上方 SDGs 圓盤的編號</span>';
             filterClear.hidden = true;
-            if (emptyMsg) emptyMsg.hidden = true;
+            emptyMsgs.forEach(function (m) { m.hidden = true; });
             syncMenu(selected);
             return;
         }
 
-        var matchCount = 0;
+        // 專案卡片與提案卡片一起篩選
         projects.forEach(function (p) {
             var tags = (p.dataset.sdgs || "").split(",").map(function (s) { return s.trim(); });
-            var match = tags.some(function (t) { return selected.indexOf(t) !== -1; });
-            p.hidden = !match;
-            // 提案卡片也會一起篩選，但「無符合專案」提示只看專案成果區
-            if (match && p.closest("#projects")) matchCount++;
+            p.hidden = !tags.some(function (t) { return selected.indexOf(t) !== -1; });
         });
 
         renderPills(items);
         filterClear.hidden = false;
-        if (emptyMsg) emptyMsg.hidden = matchCount > 0;
+        // 各區塊分別判斷：該區塊內沒有任何卡片符合時才顯示提示
+        emptyMsgs.forEach(function (m) {
+            var sec = m.closest(".section");
+            m.hidden = !!(sec && sec.querySelector(".project:not([hidden])"));
+        });
         syncMenu(selected);
     }
 
-    // 把「精選專案」區塊捲進視野。不使用 scrollIntoView，避免影響嵌入預覽；
-    // 目標就是 <section id="projects">，偏移量由該區塊自身的 scroll-margin-top 決定。
+    // 把目前顯示中的分頁（專案成果 #projects 或提案列表 #proposal）捲進視野。
+    // 不使用 scrollIntoView，避免影響嵌入預覽；偏移量由該區塊自身的 scroll-margin-top 決定。
     function scrollToProjects() {
-        scrollToEl(document.getElementById("projects"));
+        var proposal = document.getElementById("proposal");
+        var onProposal = proposal && !proposal.hidden;
+        scrollToEl(onProposal ? proposal : document.getElementById("projects"));
     }
 
     // SDGs 圓盤在 sdgs.js 裡送出的篩選事件（點擊扇形加入／移出篩選條件）
@@ -157,7 +161,7 @@
         var detail = e.detail || {};
         var items = detail.items || [];
         applyFilter(items);
-        // 從圓盤點選目標後，把下方的精選專案列表捲進視野，讓使用者馬上看到篩選結果。
+        // 從圓盤點選目標後，把下方目前分頁的列表捲進視野，讓使用者馬上看到篩選結果。
         // 篩選列上的操作（source: external）不會觸發捲動。
         if (detail.source === "wheel" && items.length) scrollToProjects();
     });
