@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO × 企業 永續媒合平台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <header class="topnav" data-od-id="topnav">
+        <div class="container topnav-inner">
+            <a class="brand" href="#top">
+                <span class="brand-badge">NGO</span>
+                <span class="brand-name">永續媒合平台</span>
+            </a>
+            <nav aria-label="主選單">
+                <a href="#projects">專案成果</a>
+                <a href="#proposal">提案列表</a>
+                <!-- <a href="#about">關於平台</a> -->
+            </nav>
+            <!-- <a class="btn btn-secondary" href="#about">與我們合作</a> -->
+        </div>
+    </header>
+
+    <main id="content">
+        <!-- ================= 列表檢視 ================= -->
+        <div id="indexView">
+            <section class="section hero" data-od-id="hero" id="top">
+                <div class="container hero-grid">
+                    <div class="hero-copy">
+                        <p class="eyebrow">NGO × 企業 · 永續合作</p>
+                        <h1>讓好專案，找到對的夥伴</h1>
+                        <p class="lead">串聯地方 NGO 的永續發展專案與企業資源，快速找到理念相符的合作機會。</p>
+                        <div class="hero-cta">
+                            <a class="btn btn-primary" href="#projects">瀏覽專案</a>
+                            <a class="btn btn-ghost btn-arrow" href="#proposal">瀏覽提案</a>
+                        </div>
+                    </div>
+
+                    <div class="hero-wheel">
+                        <div class="sdgs" id="sdgs"></div>
+                        <p class="meta hero-wheel-hint">點選圓盤上的編號，即可依 SDGs 篩選專案列表</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- <section class="section dateline" data-od-id="dateline" aria-label="平台概覽">
+                <div class="container dateline-inner">
+                    <span class="meta">NGO × CORPORATE · SUSTAINABILITY MATCHING</span>
+                    <span class="meta">6 件精選專案 · 對應 6 項 SDGs</span>
+                </div>
+            </section> -->
+            <div class="container switch-tabs" role="tablist" aria-label="切換專案 / 提案">
+                <button type="button" class="switch-tab active" role="tab" data-tab="projects"
+                        aria-selected="true" aria-controls="projects" onclick="changeTab('projects')">專案成果</button>
+                <button type="button" class="switch-tab" role="tab" data-tab="proposal"
+                        aria-selected="false" aria-controls="proposal" onclick="changeTab('proposal')">提案列表</button>
+            </div>
+
+            <section class="section" data-od-id="projects" id="projects">
+                <div class="container">
+                    <div class="section-head">
+                        <div>
+                            <p class="eyebrow eyebrow-muted">精選專案</p>
+                            <h2>永續發展專案總覽</h2>
+                        </div>
+                        <p class="lead section-note">點選上方 SDGs 圓盤的編號，或使用下方篩選列的「加入條件」，即可依目標篩選專案；點擊卡片進入專案詳情頁並下載完整報告。</p>
+                    </div>
+
+                    <!-- SDGs 篩選列：顯示圓盤已選的條件，也可以直接在這裡加入／移除條件 -->
+                    <div class="filter-bar" id="filterBar">
+                        <span class="filter-bar-label" id="filterLabel"></span>
+                        <button type="button" class="filter-add-toggle" id="filterAddToggle"
+                                aria-expanded="false" aria-controls="filterMenu">
+                            <span>加入條件</span><span class="filter-add-plus" aria-hidden="true">＋</span>
+                        </button>
+                        <button type="button" class="filter-clear" id="filterClear" hidden>清除篩選 ×</button>
+                        <div class="filter-menu" id="filterMenu" hidden></div>
+                    </div>
+
+                    <div class="projects">
+                    <!-- 專案卡片：點擊後切換到專案詳情分頁（網址 hash：#project-N） -->
+                    <!-- data-sdgs：這張卡片對應的 SDGs 編號，供 SDGs 圓盤篩選使用 -->
+
+                    <section class="project" data-od-id="project-card-1" data-sdgs="9,11,13">
+                        <h2><a class="project-open" href="#project-1">塔寮坑溪流域淹水避難孤島分析</a></h2>
+                        <p class="project-sub">Flood-Induced Dynamic Road Network and Evacuation Island Analysis</p>
+
+                        <p class="project-summary">依淹水深度動態調整道路是否可通行，找出災時到不了避難所的「避難孤島」與受困人口，協助防災單位規劃避難與物資配置。</p>
+
+                        <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-9)"><b>9</b>永續工業與基礎建設</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+
+                    <section class="project" data-od-id="project-card-2" data-sdgs="3,10,11">
+                        <h2><a class="project-open" href="#project-2">新莊區居住適居性與水文脆弱度地理空間分析</a></h2>
+                        <p class="project-sub">Geospatial MCE of Residential Livability and Hydrological Vulnerability in Xinzhuang District</p>
+
+                        <p class="project-summary">以多準則地理空間評估法，疊圖比對新莊區的綠地、交通、公共設施與交通事故資料，找出兼顧生活機能與居住安全的地段。</p>
+
+                        <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+
+                    <section class="project" data-od-id="project-card-3" data-sdgs="9,11,13">
+                        <h2><a class="project-open" href="#project-3">大漢溪水岸設施管理儀表板系統</a></h2>
+                        <p class="project-sub">Dahan River Waterfront Facilities Management Dashboard System</p>
+
+                        <p class="project-summary">整合抽水站、水位站與即時氣象／雨量／水位資料的 GIS 儀表板，點選地圖上的站點即可查看周邊天氣與淹水風險評估。</p>
+
+                        <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-9)"><b>9</b>永續工業與基礎建設</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+
+                    <section class="project" data-od-id="project-card-4" data-sdgs="3,11,13">
+                        <h2><a class="project-open" href="#project-4">智慧型淹水避難路徑規劃系統</a></h2>
+                        <p class="project-sub">The Smart Flood Evacuation Route Planning System</p>
+
+                        <p class="project-summary">輸入起點與終點，系統依降雨情境模擬淹水路段，自動避開淹水道路，規劃出前往醫院或收容所的最安全路線。</p>
+
+                        <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+
+                    <section class="project" data-od-id="project-card-5" data-sdgs="11,13,17">
+                        <h2><a class="project-open" href="#project-5">RiverEye 新店溪望愛 — 互動式災情通報地圖平台</a></h2>
+                        <p class="project-sub">RiverEye — Interactive Disaster Reporting Map Platform</p>
+
+                        <p class="project-summary">讓民眾在地圖上標記淹水、坍方等災情即時回報，後台可審查派工，並整合水利署測站資料與新店溪流域圖資，提升災情蒐集與應變效率。</p>
+
+                        <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-17)"><b>17</b>夥伴關係</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+
+                    <section class="project" data-od-id="project-card-6" data-sdgs="3,10,11">
+                        <h2><a class="project-open" href="#project-6">塔寮坑溪流域淹水潛勢、脆弱設施風險與避難路徑空間分析</a></h2>
+                        <p class="project-sub">Spatial Analysis of Flood Potential, Affected Facilities, and Evacuation Routing in the Taliaokeng River Basin</p>
+
+                        <p class="project-summary">針對塔寮坑溪流域的醫院、長照機構、幼兒園等脆弱設施進行淹水風險評分，篩選可用的避難收容所，並規劃避開淹水路段的避難路徑。</p>
+
+                        <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+                    </div>
+
+                    <!-- 篩選後若沒有符合已選目標的 project 時顯示 -->
+                    <p class="filter-empty" id="filterEmpty" hidden>目前沒有專案對應已選取的 SDGs 目標。</p>
+                </div>
+            </section>
+
+            <!-- 提案列表：與「專案成果」以上方按鈕切換 -->
+            <section class="section" data-od-id="proposal" id="proposal" hidden>
+                <div class="container">
+                    <div class="section-head">
+                        <div>
+                            <p class="eyebrow eyebrow-muted">提案列表</p>
+                            <h2>NGO 提案總覽</h2>
+                        </div>
+                        <p class="lead section-note">尚在尋找合作夥伴的 NGO 提案，歡迎企業洽詢合作。</p>
+                    </div>
+
+                    <div class="proposals">
+                    <!-- 提案卡片：點擊後切換到提案詳情分頁（網址 hash：#proposal-N） -->
+
+                    <section class="project" data-od-id="proposal-card-1" data-sdgs="2,3,12,17">
+                        <h2><a class="project-open" href="#proposal-1">跨 NPO 長照接送暨惜食終結資源整合計畫</a></h2>
+                        <p class="project-sub">Cross-NPO Long-Term Care Transport &amp; Food Rescue Integration</p>
+                        <p class="project-org">興毅社會福利基金會 × 北台灣無障礙運輸產業工會</p>
+
+                        <p class="project-summary">串接興毅基金會的里長通報平台與無障礙運輸工會的派車系統：福祉車去程載長者就醫並申請 1966 長照交通補助，回程順道為食物銀行補給物資，讓閒置車輛與惜食物流互補。</p>
+
+                        <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-2)"><b>2</b>終結飢餓</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-12)"><b>12</b>責任消費與生產</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-17)"><b>17</b>永續發展夥伴關係</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+
+                    <section class="project" data-od-id="proposal-card-2" data-sdgs="2,10,12">
+                        <h2><a class="project-open" href="#proposal-2">讓愛心被看見 — 捐款影響力與動態圖表網頁</a></h2>
+                        <p class="project-sub">Making Kindness Visible — Donation Impact Dashboard</p>
+                        <p class="project-org">興毅社會福利基金會</p>
+
+                        <p class="project-summary">把冗長的年度成果 PDF 轉成互動網站：影響力儀表板加上類似 Spotify Wrapped 的個人年度影響力卡片，捐款人免登入，點 Email 連結或掃 QR Code 就能看到捐款幫助了多少家庭與餐食。</p>
+
+                        <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-2)"><b>2</b>終結飢餓</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-12)"><b>12</b>責任消費與生產</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+
+                    <section class="project" data-od-id="proposal-card-3" data-sdgs="12,13,17">
+                        <h2><a class="project-open" href="#proposal-3">捐贈誘因與回饋系統</a></h2>
+                        <p class="project-sub">Corporate Food Donation Incentive &amp; Feedback System</p>
+                        <p class="project-org">興毅社會福利基金會</p>
+
+                        <p class="project-summary">為捐贈即期食品的廠商打造 Web 平台，自動計算捐贈食物量、減碳量與省下的報廢處理費，產生永續報告與貢獻標章，並設立捐贈排行榜，讓企業捐贈看得見回報。</p>
+
+                        <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-12)"><b>12</b>責任消費與生產</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-17)"><b>17</b>永續發展夥伴關係</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+
+                    <section class="project" data-od-id="proposal-card-4" data-sdgs="3,10,11">
+                        <h2><a class="project-open" href="#proposal-4">揪起來讓我們通行無阻 — 無障礙揪團與接送媒合平台</a></h2>
+                        <p class="project-sub">Accessible Social Activity &amp; Transport Matching Platform</p>
+                        <p class="project-org">北台灣無障礙運輸產業工會</p>
+
+                        <p class="project-summary">讓身心障礙者、高齡者與照顧者在無障礙平台上發起或參加出遊活動，並直接向無障礙運輸工會送出接送需求，同時活化工會專車在週末的閒置運能。</p>
+
+                        <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+
+                    <section class="project" data-od-id="proposal-card-5" data-sdgs="3,10,11">
+                        <h2><a class="project-open" href="#proposal-5">無礙同行 — 共創無障礙資訊分享平台</a></h2>
+                        <p class="project-sub">Barrier-Free Together — Co-Created Accessibility Information Platform</p>
+                        <p class="project-org">北台灣無障礙運輸產業工會</p>
+
+                        <p class="project-summary">為輪椅族打造免下載的 PWA 平台：拍照即可用 AI 量測門檻與坡度，以動態燈號標示場域是否好進出，再結合使用者共創回報、商家無礙認證與揪團功能，讓獨立出門從「挑戰」變為「日常」。</p>
+
+                        <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                            <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                            <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                        </ul>
+
+                        <span class="project-more" aria-hidden="true">查看詳細資訊</span>
+                    </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= 專案詳情分頁 ================= -->
+
+        <article class="project-page" data-od-id="project-page-1" id="project-1" hidden>
+            <div class="container">
+                <a class="page-back" href="#projects">返回專案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">專案詳情</p>
+                    <h1 class="page-title">塔寮坑溪流域淹水避難孤島分析</h1>
+                    <p class="project-sub">Flood-Induced Dynamic Road Network and Evacuation Island Analysis</p>
+                    <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-9)"><b>9</b>永續工業與基礎建設</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <h3>提案目的</h3>
+                    <p>極端降雨日益頻繁，道路一旦淹水，居民可能無法在時限內抵達避難收容所，形成「避難孤島」。傳統路網分析多假設道路全部可通行，無法反映災時狀況。本專案以新北新莊、樹林與桃園龜山的塔寮坑溪流域為範圍，建立會隨淹水深度改變的動態道路網絡，找出避難孤島並估算受困人口，作為防災與避難規劃的依據。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>整合資料：</b>20 m DEM、坡度與窪地、淹水潛勢圖、OpenStreetMap 道路、內政部 SEGIS 100 m 人口格網，以及人工地理編碼的避難收容所。</li>
+                        <li><b>動態阻抗：</b>將道路與淹水深度疊合，平均或最大水深超過 0.3 m，或屬高風險路段（如地下道）者視為不可通行，成本設為 999999。</li>
+                        <li><b>15 分鐘避難服務區：</b>移除不可通行路段後，以收容所為起點，計算 1,200 m（約步行 15 分鐘）的路網服務範圍，再做 100 m 緩衝與合併。</li>
+                        <li><b>辨識避難孤島：</b>將人口格網扣除服務範圍，剩下的即為避難孤島，再以面積加權法統計各島受困人口。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>可反映淹水影響的動態道路網絡模型，前後對照顯示路網如何被切斷。</li>
+                        <li>避難孤島分布圖，本研究辨識出 387 處孤立的格網區塊。</li>
+                        <li>受困人口排名報表，前 10 名各約 1,100 至 1,500 人，最高為 1,525 人。</li>
+                        <li>提供防災單位依據，用來規劃物資預置、改善收容所可及性，並優先補強關鍵道路。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</span>
+                            <span>11.5 減少災害造成的人員受影響與損失：找出淹水時被困住的社區與人口。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</span>
+                            <span>13.1 強化對氣候相關災害的韌性與適應能力：以極端降雨淹水情境評估避難可及性。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-9)"><b>9</b>永續工業與基礎建設</span>
+                            <span>9.1 發展具韌性的基礎建設：把淹水對道路系統的影響量化為動態阻抗。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="achievement/Final-GroupA-0616.pdf" target="_blank" rel="noopener">瀏覽完整報告（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-page" data-od-id="project-page-2" id="project-2" hidden>
+            <div class="container">
+                <a class="page-back" href="#projects">返回專案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">專案詳情</p>
+                    <h1 class="page-title">新莊區居住適居性與水文脆弱度地理空間分析</h1>
+                    <p class="project-sub">Geospatial MCE of Residential Livability and Hydrological Vulnerability in Xinzhuang District</p>
+                    <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <h3>提案目的</h3>
+                    <p>新莊區高度都市化，但南北發展落差明顯：北新莊（副都心、頭前重劃區）公共設施完善，南新莊舊市區則因早期工業與住宅混合發展，普遍綠地不足、交通事故密集。本專案跳脫傳統以行政村里為單位的粗略評估，改以 1,334 個「最小統計區」為分析單元，建立多準則地理空間評估（MCE）模型，量化居住適居性與環境不正義的空間分布，作為購屋與都市更新決策的依據。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>人均綠地分析：</b>以向量疊圖計算各最小統計區的人均綠地面積，並以 WHO 建議值 9 m²/人為國際標準、4 m²/人為國內都會平均，劃分等級。</li>
+                        <li><b>交通與生活機能可及性：</b>以 600 m／900 m 服務半徑建立公車、YouBike、捷運站緩衝區並做多階段交集運算，找出「三鐵共構」核心區，再疊圖五大生活機能，產出 15 分鐘生活圈熱點圖。</li>
+                        <li><b>交通風險分析：</b>沿道路建立 10 m 緩衝區，統計 114 年 A2 交通事故點位數，以 Jenks 自然分級法分成 7 級風險。</li>
+                        <li><b>志願性地理資訊比對：</b>以擴增實境遊戲 Pikmin Bloom 的虛擬活動節點密度，作為街道步行友善度的輔助參考指標（不納入最終決策）。</li>
+                        <li><b>多準則疊圖評分：</b>將以上圖層加權疊加，產出綜合適居性評分地圖。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>中港大排中游沿線被評為全區最佳的「黃金平衡帶」：生活機能便利、水岸品質佳，且避開主要幹道的事故熱區。</li>
+                        <li>揭露南新莊舊市區「機能滿分、綠地不足、事故密集」的環境不正義現況，並提出選址與隔音等因應建議。</li>
+                        <li>指出新莊副都心綠地與公設雖超越 WHO 標準，但巷弄內的日常商店與基層醫療仍待補強。</li>
+                        <li>建立可複製到其他行政區的「都市針灸」式規劃架構，作為社宅選址與都市更新的科學依據。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</span>
+                            <span>11.3 促進包容且永續的都市化：以最小統計區量化生活機能與公共設施的空間落差，作為都市更新與選址依據。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</span>
+                            <span>10.2 促進所有人的社會與經濟參與：揭露南北新莊人均綠地與公共設施資源分配不均的環境不正義。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</span>
+                            <span>3.6 減少道路交通事故造成的傷亡：以 Jenks 分級找出高風險路段，提供防範與選址建議。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="achievement/Final-GroupD.pdf" target="_blank" rel="noopener">瀏覽完整報告（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-page" data-od-id="project-page-3" id="project-3" hidden>
+            <div class="container">
+                <a class="page-back" href="#projects">返回專案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">專案詳情</p>
+                    <h1 class="page-title">大漢溪水岸設施管理儀表板系統</h1>
+                    <p class="project-sub">Dahan River Waterfront Facilities Management Dashboard System</p>
+                    <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-9)"><b>9</b>永續工業與基礎建設</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <h3>提案目的</h3>
+                    <p>大漢溪流域的抽水站是防洪治理的第一線設施，但站點資訊、即時雨量、水位與周邊風險評估過去分散在不同單位的系統中，難以在災時快速掌握全貌。本專案建立一套以開源與政府開放資料為基礎的 GIS 儀表板，整合抽水站、水位站、河川圖層與中央氣象署、水利署的即時資料，讓防汛人員與民眾在地圖上點選任一站點，即可立即看到天氣、雨量、水位與風險評估，加快決策速度。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>空間圖層建置：</b>以 GeoJSON（WGS84）格式建立抽水站、水位站、河川、行政區界等向量圖層，並以 Google Maps JavaScript API 作為互動式底圖。</li>
+                        <li><b>即時資料串接：</b>串接中央氣象署天氣／雨量 API、新北市鄉鎮預報（F-D0047-071），以及水利署即時水位資料，統一以 REST JSON 格式交換。</li>
+                        <li><b>點選查詢介面：</b>使用者點擊地圖上的站點標記，系統即時顯示該站基本資料、最近測站天氣、河川水位與風險燈號。</li>
+                        <li><b>使用者權限管理：</b>區分「管理者」與「檢視者」角色，管理者可管理帳號與站點資料，檢視者僅能瀏覽監測資訊。</li>
+                        <li><b>後台資料整合服務：</b>建立資料蒐集、標準化、儲存與 API 服務流程，確保前台地圖資料即時更新。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>一套可互動的 GIS 地圖，整合抽水站、水位站、河川與行政區界圖層，可切換標準／衛星／混合底圖。</li>
+                        <li>點選任一站點即顯示天氣、雨量、水位與風險評估燈號，取代人工查詢多個系統的流程。</li>
+                        <li>依角色分級的使用者管理機制，讓防汛單位與一般民眾看到適合各自需求的資訊層級。</li>
+                        <li>建立可擴充的即時資料整合架構，未來可加入更多測站或延伸到其他流域。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</span>
+                            <span>11.5 減少天災造成的損失：整合水位與風險資訊，強化防災應變能力。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</span>
+                            <span>13.1 強化因應氣候相關災害的韌性：即時串接雨量與水位監測資料。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-9)"><b>9</b>永續工業與基礎建設</span>
+                            <span>9.1 發展具韌性的基礎建設：把抽水站等防洪設施的管理數位化、可視化。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="achievement/Final-GroupE.pdf" target="_blank" rel="noopener">瀏覽完整報告（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-page" data-od-id="project-page-4" id="project-4" hidden>
+            <div class="container">
+                <a class="page-back" href="#projects">返回專案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">專案詳情</p>
+                    <h1 class="page-title">智慧型淹水避難路徑規劃系統</h1>
+                    <p class="project-sub">The Smart Flood Evacuation Route Planning System</p>
+                    <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <h3>提案目的</h3>
+                    <p>淹水發生時，民眾與救災人員常仍依賴平時熟悉的路線，卻可能因道路淹水而受困或延誤。本專案開發一套網頁版 GIS 平台，整合淹水潛勢圖、即時雨量、道路網絡、醫院與避難收容所資料，讓使用者可以模擬不同降雨情境，自動計算避開淹水路段的最佳避難路徑，支援防災決策與緊急避難。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>路網與圖資建置：</b>以 OSMnx 建立道路路網圖，並以 GeoPandas 處理淹水潛勢圖資，統一座標系統後裁切至研究範圍。</li>
+                        <li><b>降雨情境模擬：</b>使用者可從控制台選擇不同累積降雨情境（如 12 小時降雨 400 mm），系統依情境篩選對應的淹水潛勢圖層（0.1 m 至 3.0 m 以上，共 7 級）。</li>
+                        <li><b>動態路徑成本：</b>把淹水路段疊圖到路網上，依使用者勾選要避開的淹水等級，將對應路段的通行成本大幅提高。</li>
+                        <li><b>最短路徑演算：</b>以 NetworkX 在動態調整過的路網上計算避開淹水路段的最短安全路徑，並繪製成地圖上的路線。</li>
+                        <li><b>即時資料整合：</b>串接新莊、板橋、龜山等測站的即時雨量資料，並標示醫院與避難收容所等 17 處緊急設施位置。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>一套網頁版避難路徑規劃系統，使用者輸入或點選起訖點後，可依降雨情境即時算出安全路徑。</li>
+                        <li>地圖上清楚標示淹水路段（含模擬水深說明）、醫院、避難收容所與即時雨量測站。</li>
+                        <li>支援多種降雨情境切換，方便防災單位事先推演不同淹水規模下的避難動線。</li>
+                        <li>提供可重複使用的路網與淹水疊圖架構，未來可擴充到其他易淹水行政區。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</span>
+                            <span>11.5 減少天災造成的人員傷亡：即時規劃避開淹水的避難路徑。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</span>
+                            <span>13.1 強化因應氣候相關災害的韌性：模擬不同降雨情境下的淹水風險。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</span>
+                            <span>3.d 強化災害風險管理：連結醫院與避難收容所，加速就醫與避難。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="achievement/Final-GroupF-0608.pdf" target="_blank" rel="noopener">瀏覽完整報告（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-page" data-od-id="project-page-5" id="project-5" hidden>
+            <div class="container">
+                <a class="page-back" href="#projects">返回專案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">專案詳情</p>
+                    <h1 class="page-title">RiverEye 新店溪望愛 — 互動式災情通報地圖平台</h1>
+                    <p class="project-sub">RiverEye — Interactive Disaster Reporting Map Platform</p>
+                    <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-17)"><b>17</b>夥伴關係</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <h3>提案目的</h3>
+                    <p>災害發生當下，第一線災情往往分散在民眾手機裡，政府單位難以即時掌握現場實況。本專案建立一套互動式地圖平台，讓民眾能在地圖上標記位置、選擇災情類型（淹水、坍方、道路封閉等）並即時回報，管理端則可在後台審查、更新處理狀態並調度資源，同時整合水利署新店溪水源特定區圖層，作為回報與派工時的空間參考依據。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>前端地圖介面：</b>以 Google Maps JavaScript API 為核心地圖引擎，呈現高精度地圖、進階標記與資訊視窗，並支援即時定位使用者所在位置。</li>
+                        <li><b>民眾端回報子系統：</b>使用者可在地圖上點選位置、選擇災情類型並送出回報，回報資料透過 Supabase 即時寫入資料庫。</li>
+                        <li><b>管理端審查調度子系統：</b>管理員可在後台檢視所有回報、更新處理狀態（待處理／處理中／已完成），並依此調度應變資源。</li>
+                        <li><b>空間圖資整合子系統：</b>串接水利署（WRA）RESTful API，取得雨量、河川水位、淹水感測等即時觀測資料，並疊合新店溪水源特定區流域邊界，做為災情回報與派工的空間參考。</li>
+                        <li><b>帳號與權限管理：</b>以 Supabase Auth 驗證登入，區分「民眾」與「管理員」角色，並依角色開放對應功能。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>一套可互動的災情通報地圖，民眾可即時標記與查看鄰近的災情回報與未回報狀態。</li>
+                        <li>後台審查調度儀表板，管理員可掌握回報進度並優化資源分配。</li>
+                        <li>整合水利署即時觀測資料與新店溪水源特定區圖層，讓回報與派工都有明確的水文空間依據。</li>
+                        <li>建立可重複使用的群眾回報（crowdsourcing）災情蒐集架構，未來可擴充到其他流域。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</span>
+                            <span>11.5 減少天災造成的損失：以群眾回報加速災情掌握與應變調度。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</span>
+                            <span>13.3 強化氣候相關災害的預警與因應能力：整合即時水文觀測資料。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-17)"><b>17</b>夥伴關係</span>
+                            <span>17.17 促進公私協力：讓民眾與政府共同參與災情蒐集與應變。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="achievement/Final-GroupB-0620.pdf" target="_blank" rel="noopener">瀏覽完整報告（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-page" data-od-id="project-page-6" id="project-6" hidden>
+            <div class="container">
+                <a class="page-back" href="#projects">返回專案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">專案詳情</p>
+                    <h1 class="page-title">塔寮坑溪流域淹水潛勢、脆弱設施風險與避難路徑空間分析</h1>
+                    <p class="project-sub">Spatial Analysis of Flood Potential, Affected Facilities, and Evacuation Routing in the Taliaokeng River Basin</p>
+                    <ul class="sdg-tags" aria-label="本專案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <h3>提案目的</h3>
+                    <p>塔寮坑溪流域內有多達 36 處脆弱設施，包括醫院、護理之家、長照機構、幼兒園與托嬰中心，這些場所收容行動不便或需要特別照護的族群，一旦淹水延誤避難，後果嚴重。本專案運用 GIS 空間分析，評估流域內脆弱設施在不同降雨情境下的淹水風險，檢視避難收容所在淹水時是否仍可用，並規劃避開淹水路段的避難路徑，作為防災規劃與應變資源分配的依據。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>設施資料建置：</b>整合政府開放資料、Google 地圖核實與人工地理編碼，建立 36 處脆弱設施與避難收容所的 GIS 點位圖層，統一投影為 TWD97／TM2 座標系統。</li>
+                        <li><b>風險量化評分：</b>參考國家災害防救科技中心（NCDR）的風險評估架構（危害度 × 脆弱度 × 暴露度），把 10 種降雨情境（6／12／24 小時、150 mm 至 650 mm）下的淹水深度轉換為 1 至 5 分的風險分數，並依各情境的歷史發生頻率加權，算出每處設施的綜合風險分數。</li>
+                        <li><b>收容所可用性篩選：</b>疊圖各情境淹水深度與收容所位置，排除淹水深度超過 0.3 m 的收容所，篩選出實際可用的避難收容所。</li>
+                        <li><b>孤島設施辨識：</b>以可用收容所為起點，沿路網模擬 1,500 公尺服務範圍，找出範圍外、平時就難以到達收容所的「孤島設施」。</li>
+                        <li><b>淹水道路網絡與避難路徑規劃：</b>以 24 小時 650 mm 極端情境為例，移除淹水深度超過 0.5 m（車輛通行極限）的路段，建立殘留道路網絡，並以最短路徑演算法計算每處脆弱設施到最近可用收容所的避難路線；完全無法連通者即判定為「淹水孤島」。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>36 處脆弱設施的加權淹水風險排名，其中 3 處風險最高，優先列為防災重點。</li>
+                        <li>篩選出 7 處在各情境下仍可用的避難收容所，並辨識出 8 處平時服務範圍外的孤島設施。</li>
+                        <li>在極端降雨情境下，19 處設施仍可透過替代道路避難，另有 9 處設施完全被淹水切斷道路、成為淹水孤島，需要提前疏散或原地垂直避難的應變計畫。</li>
+                        <li>提供逐一設施的避難路線圖與距離矩陣，作為地方政府優先補強道路、預置資源與擬定個別化避難計畫的依據。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</span>
+                            <span>協助第一線應變單位在極端天氣事件中挽救更多生命，確保行動不便族群的醫療照護不中斷。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</span>
+                            <span>優先分配防災資源給風險最高的設施，弭平地理資訊落差造成的資源分配不均。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</span>
+                            <span>以動態路網分析強化公共安全基礎設施，提升都市對水文氣象災害的韌性。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="achievement/Final-GroupC(Study).pdf" target="_blank" rel="noopener">瀏覽完整報告（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ================= 提案詳情分頁 ================= -->
+
+        <article class="project-page" data-od-id="proposal-page-1" id="proposal-1" hidden>
+            <div class="container">
+                <a class="page-back" href="#proposal">返回提案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">提案詳情</p>
+                    <h1 class="page-title">跨 NPO 長照接送暨惜食終結資源整合計畫</h1>
+                    <p class="project-sub">Cross-NPO Long-Term Care Transport &amp; Food Rescue Integration</p>
+                    <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-2)"><b>2</b>終結飢餓</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-12)"><b>12</b>責任消費與生產</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-17)"><b>17</b>永續發展夥伴關係</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <dl class="page-facts">
+                        <div><dt>提案團隊</dt><dd>A 組</dd></div>
+                        <div><dt>合作 NGO</dt><dd>興毅社會福利基金會、北台灣無障礙運輸產業工會</dd></div>
+                        <div><dt>執行期程</dt><dd>115/7/1 – 116/9/30（15 個月）</dd></div>
+                        <div><dt>預估經費</dt><dd>NT$ 2,824,497</dd></div>
+                    </dl>
+
+                    <h3>提案目的</h3>
+                    <p>興毅基金會的「忠信食物銀行」在桃園八德設有惜食基地，具備冷凍倉儲與 80 座食享冰箱，卻缺乏專職物流車隊，物資補給常延誤；北台灣無障礙運輸產業工會的特約福祉車，則在離峰時段（上午 10 點至下午 3 點）大量閒置，中高齡司機收入不穩。本提案採「不購新車、對接舊系統」的方針，建立中介資料交換模組，把里長通報的弱勢長者就醫接送需求導流給工會福祉車並申請 1966 長照交通補助，回程空車則順道補給食物銀行物資，形成可自我造血的「綠色長照惜食循環」。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>協調與合規：</b>擬定雙方合作備忘錄（MOU）、共用 1966 特約資格審查，並盤點工會車隊的閒置運能。</li>
+                        <li><b>跨系統 API 交換模組：</b>以 HTTPS + TLS 1.3 的 RESTful API 串接興毅里長通報系統與工會派車調度核心；派車端中斷時，中介層自動快取轉介紀錄並通知客服改以人工派車。</li>
+                        <li><b>1966 自動核銷對帳：</b>讀取派車系統的 GPS 行車軌跡，對應衛福部核銷格式自動產出請款報表；軌跡與請款公里數偏差超過 15% 時自動警示並鎖定該筆補助，防止冒領。</li>
+                        <li><b>桃園八德示範區營運：</b>規劃人與物資共乘路線、設計司機趟次與績效獎勵方案，並進行複合共乘實地壓力測試。</li>
+                        <li><b>跨域培訓與成效評估：</b>分別辦理里長通報操作、司機服務 SOP 與會計聯合對帳培訓，並由跨 NPO 推動委員會每月檢核對帳表與 MOU 履行情形。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>會計每月 1966 請款的身分比對與人工作業，由約 40 小時降至 4 小時。</li>
+                        <li>打通高齡長者就醫交通的最後一哩路，並以趟次獎勵機制提升司機平均月收入。</li>
+                        <li>以回程空車搬運惜食，降低物流行駛里程與碳排，減少食物腐敗。</li>
+                        <li>長照接送補助盈餘回充食物銀行的冷凍與行政開銷，並產出 ESG 影響力報告，作為向企業爭取長期贊助的依據。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-2)"><b>2</b>終結飢餓</span>
+                            <span>2.1 確保弱勢族群取得足夠糧食：補上食物銀行缺少的物流運能，讓物資準時送達社區據點。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</span>
+                            <span>3.8 讓人人取得醫療服務：協助弱勢長者取得就醫接送與 1966 長照交通補助。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-12)"><b>12</b>責任消費與生產</span>
+                            <span>12.3 減少糧食浪費：以回程空車加速惜食去化，降低食物腐敗與物流碳排。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-17)"><b>17</b>永續發展夥伴關係</span>
+                            <span>17.17 促進公私與民間夥伴關係：讓兩個 NPO 共用車輛、資格與系統資源。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="proposal/A_Proposal-興毅&amp;無障礙.pdf" target="_blank" rel="noopener">瀏覽完整提案（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-page" data-od-id="proposal-page-2" id="proposal-2" hidden>
+            <div class="container">
+                <a class="page-back" href="#proposal">返回提案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">提案詳情</p>
+                    <h1 class="page-title">讓愛心被看見 — 捐款影響力與動態圖表網頁</h1>
+                    <p class="project-sub">Making Kindness Visible — Donation Impact Dashboard</p>
+                    <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-2)"><b>2</b>終結飢餓</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-12)"><b>12</b>責任消費與生產</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <dl class="page-facts">
+                        <div><dt>提案團隊</dt><dd>來個蝦趴的</dd></div>
+                        <div><dt>合作 NGO</dt><dd>興毅社會福利基金會</dd></div>
+                        <div><dt>執行期程</dt><dd>115/7/10 – 115/10/9（3 個月）</dd></div>
+                        <div><dt>預估經費</dt><dd>NT$ 504,687（含永續專項 18,000）</dd></div>
+                    </dl>
+
+                    <h3>提案目的</h3>
+                    <p>興毅基金會長期投入食物救援與弱勢服務，但年度成果報告以靜態 PDF 呈現，內容冗長、缺乏互動，捐款人難以直觀理解自己的捐款帶來了什麼改變。本提案建置一個視覺化互動網站，把捐款數據轉換為「協助了多少家庭、提供了多少餐、減少了多少食物浪費」等具體成果，並為每位捐款人產生專屬的年度影響力回顧，藉由資訊透明與個人化內容建立長期信任，提升留存率與再捐款意願。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>數據清洗與指標定義：</b>彙整台北、新北、桃園、台南四地據點的捐款與服務資料並統一格式，定義捐款換算邏輯（例如 500 元 = 3 戶家庭物資），並委請食物救援專家確認公斤數、餐份數與減碳量的換算是否合理。</li>
+                        <li><b>介面設計：</b>參考 Spotify Wrapped 設計個人年度影響力卡片，並規劃動態影響力儀表板與實體據點大螢幕展示版面，完成互動原型。</li>
+                        <li><b>核心功能開發：</b>建置 RWD 響應式網頁與符合 WCAG 的無障礙模組，以「專屬連結」取代繁瑣的會員登入，呈現個人捐款旅程回顧。</li>
+                        <li><b>測試與部署：</b>進行功能、跨裝置與數據正確性驗證後部署至雲端，串接官網、社群與電子郵件系統，完成 EDM 推播與 QR Code 生成測試，並交付操作維護手冊。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>一個運作穩定的捐款影響力網站，以動態圖表呈現基金會整體服務成果。</li>
+                        <li>每位捐款人都有專屬的年度回顧頁面，透過 Email 或掃描 QR Code 即可免登入直達。</li>
+                        <li>減少人工重複整理報表，資料可追溯並支援跨年度比較。</li>
+                        <li>提升捐款人的情感認同與信任，擴大興毅基金會的長期募款能量。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-2)"><b>2</b>終結飢餓</span>
+                            <span>2.1 確保弱勢族群取得足夠糧食：讓捐款人看見捐款轉化成的餐食與物資，支持食物救援持續運作。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</span>
+                            <span>10.2 促進社會包容：導入無障礙網頁指南，讓高齡與特定需求捐款人都能平等取得資訊。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-12)"><b>12</b>責任消費與生產</span>
+                            <span>12.3 減少糧食浪費：以視覺化呈現食物救援成效，提升大眾對食物浪費議題的認知。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="proposal/來個蝦趴的_Proposal-興毅v3.pdf" target="_blank" rel="noopener">瀏覽完整提案（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-page" data-od-id="proposal-page-3" id="proposal-3" hidden>
+            <div class="container">
+                <a class="page-back" href="#proposal">返回提案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">提案詳情</p>
+                    <h1 class="page-title">捐贈誘因與回饋系統</h1>
+                    <p class="project-sub">Corporate Food Donation Incentive &amp; Feedback System</p>
+                    <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-12)"><b>12</b>責任消費與生產</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-17)"><b>17</b>永續發展夥伴關係</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <dl class="page-facts">
+                        <div><dt>提案團隊</dt><dd>健達奇趣蛋</dd></div>
+                        <div><dt>合作 NGO</dt><dd>興毅社會福利基金會</dd></div>
+                        <div><dt>執行期程</dt><dd>115/8/1 – 116/1/31（6 個月）</dd></div>
+                        <div><dt>預估經費</dt><dd>NT$ 512,236</dd></div>
+                    </dl>
+
+                    <h3>提案目的</h3>
+                    <p>廠商捐贈即期食品給食物銀行時，缺乏具體的回饋機制，捐贈價值與長期效益難以量化，捐贈誘因因此不足。需求訪談指出，興毅基金會能在短期內消化大量食物，且物資以「在地消耗」為原則；對廠商而言，把預計報廢的食物捐出，不僅省下焚化清運費，還能減少碳排。本提案建置雲端平台，把這些效益量化並轉化為企業看得見的回報，以「減輕資源處理成本」與「減少碳排放」為永續目標。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>需求收斂：</b>訪談興毅基金會與潛在合作廠商，盤點捐贈流程的瓶頸，產出使用者訪談需求表並確立系統規格。</li>
+                        <li><b>數據計算邏輯：</b>整合碳排計算（CO₂ = d × e，參考環境部溫室氣體排放係數）與成本節省分析模組，量化廠商省下的物資處理費。</li>
+                        <li><b>標章與回饋機制：</b>設計分級的永續貢獻標章，並開發捐贈排行榜與榮譽展示功能。</li>
+                        <li><b>視覺化與報告：</b>以戰情儀表板呈現累積捐贈食物量與減碳績效，並提供永續報告（ESG／CSR）一鍵下載。</li>
+                        <li><b>試點上線：</b>匯入歷史捐贈資料，以興毅主要物資集散站與 2 至 3 家指標性捐贈廠商，跑完「廠商捐贈 → NPO 接收 → 系統自動回饋」的完整閉環後再擴大推廣。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>提升捐贈夥伴參與數、資源媒合成功率與合作夥伴留存率。</li>
+                        <li>透過成本效益分析，具體呈現廠商省下的報廢費用與減碳量。</li>
+                        <li>自動產出永續報告，減輕企業撰寫永續報告書的行政負擔。</li>
+                        <li>以永續貢獻標章與榮譽展示提升企業形象，提高物資再利用率。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-12)"><b>12</b>責任消費與生產</span>
+                            <span>12.3 減少糧食浪費、12.6 鼓勵企業發布永續報告：把即期食品導向再利用，並協助企業產出永續資訊。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-13)"><b>13</b>氣候行動</span>
+                            <span>13.3 提升減碳意識：量化每筆捐贈所減少的碳排放，讓減碳成果可被追蹤。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-17)"><b>17</b>永續發展夥伴關係</span>
+                            <span>17.17 促進公私夥伴關係：以誘因與回饋機制，建立企業與食物銀行的長期合作。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="proposal/健達奇趣蛋_proposal_興毅v2.pdf" target="_blank" rel="noopener">瀏覽完整提案（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-page" data-od-id="proposal-page-4" id="proposal-4" hidden>
+            <div class="container">
+                <a class="page-back" href="#proposal">返回提案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">提案詳情</p>
+                    <h1 class="page-title">揪起來讓我們通行無阻 — 無障礙揪團與接送媒合平台</h1>
+                    <p class="project-sub">Accessible Social Activity &amp; Transport Matching Platform</p>
+                    <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <dl class="page-facts">
+                        <div><dt>提案團隊</dt><dd>朝九晚五</dd></div>
+                        <div><dt>合作 NGO</dt><dd>北台灣無障礙運輸產業工會</dd></div>
+                        <div><dt>執行期程</dt><dd>115/7/26 – 116/7/31（12 個月）</dd></div>
+                        <div><dt>預估經費</dt><dd>NT$ 997,200</dd></div>
+                    </dl>
+
+                    <h3>提案目的</h3>
+                    <p>身心障礙者、高齡者與行動不便者常因「怕麻煩別人」與出行資訊不透明而減少外出社交，現行約團也零散分布在各社群私訊中，溝通效率低。需求訪談中，工會表示旗下有可同時載運多台輪椅的車輛，並看好「無障礙旅遊」的發展潛力。本提案建置一套無障礙社交活動與媒合平台，讓使用者能集中揪團出遊，並直接串接工會的接送服務，同時提升工會專車在週末非尖峰時段的利用率。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>參與式規劃：</b>訪談身障使用者與工會司機，整理需求並訂定系統規格與量化指標。</li>
+                        <li><b>系統分析與設計：</b>完成系統架構、資料庫結構、API 規格與介面原型設計。</li>
+                        <li><b>核心功能開發：</b>建置會員與權限管理、活動揪團、接送需求協作，以及訂單與行程管理功能，並串接 Google Maps API 定位服務。</li>
+                        <li><b>營運輔助功能：</b>提供使用者互評與回饋機制、活動與接送通知，以及營運管理後台（會員、活動、接送紀錄與營運數據）。</li>
+                        <li><b>測試與上線：</b>執行功能整合測試、WCAG 無障礙檢測與資安檢測，部署至雲端並進行效能調校。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>集中化的揪團平台，取代零散的社群約團，縮短活動規劃與溝通時間。</li>
+                        <li>將旅遊接送訂單導入工會體系，提升週末無障礙專車稼動率，並以媒合服務費為工會建立穩定金流。</li>
+                        <li>遵循 WCAG 規範的操作介面，降低身障者使用門檻，增加同儕互動機會。</li>
+                        <li>後續可擴充接送路徑最佳化與語音輸入表單等加值功能。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</span>
+                            <span>3.4 促進心理健康：以同儕社交與出遊活動，緩解行動不便者與照顧者的孤獨感與焦慮。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</span>
+                            <span>10.2 促進社會包容：介面遵循 WCAG 規範，保障不同障礙別的數位近用權。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</span>
+                            <span>11.7 提供安全且包容的公共空間：結合地圖定位與無障礙接送，協助身障者與高齡者安全抵達各類公共場所。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="proposal/朝九晚五_Proposal-無障礙.pdf" target="_blank" rel="noopener">瀏覽完整提案（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-page" data-od-id="proposal-page-5" id="proposal-5" hidden>
+            <div class="container">
+                <a class="page-back" href="#proposal">返回提案列表</a>
+                <header class="page-head">
+                    <p class="eyebrow">提案詳情</p>
+                    <h1 class="page-title">無礙同行 — 共創無障礙資訊分享平台</h1>
+                    <p class="project-sub">Barrier-Free Together — Co-Created Accessibility Information Platform</p>
+                    <ul class="sdg-tags" aria-label="本提案對應的 SDGs">
+                        <li class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</li>
+                        <li class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</li>
+                    </ul>
+                </header>
+
+                <div class="page-body">
+                    <dl class="page-facts">
+                        <div><dt>提案團隊</dt><dd>餓龍咆哮</dd></div>
+                        <div><dt>合作 NGO</dt><dd>北台灣無障礙運輸產業工會</dd></div>
+                        <div><dt>執行期程</dt><dd>115/7/1 – 116/4/30（10 個月）</dd></div>
+                        <div><dt>預估經費</dt><dd>NT$ 992,993</dd></div>
+                    </dl>
+
+                    <h3>提案目的</h3>
+                    <p>輪椅使用者、高齡者與照顧者出門前，常需要確認入口是否有門檻、坡道是否安全、店內空間是否足夠，但這些資訊散落在網路評論與個人經驗中，缺乏一致的判斷標準，往往到了現場才發現進不去。需求訪談中，工會建議以建築物無障礙法規為基準、鼓勵商家主動改善，並讓真正的輪椅族參與評判。本提案建置一套共創式無障礙資訊平台，以客觀量測取代「有點陡」「好像很高」等主觀描述，並透過社群與商家共同維護資料，讓獨立出門與社交從「挑戰」變為「日常」。</p>
+
+                    <h3>實施方法</h3>
+                    <ol>
+                        <li><b>需求分析與規格：</b>進行利害關係人與使用者情境分析、無障礙需求與風險評估，定義服務藍圖、MVP 功能範圍與 AI／NLP 模型需求規格。</li>
+                        <li><b>AI 影像量測：</b>整合 Google Vision API 與 AR 空間演算法，拍照即可量測門檻高度與坡度比例，並依無障礙設施法規自動判定是否合格。</li>
+                        <li><b>無礙動態燈號與共創回報：</b>以燈號呈現場域目前的無障礙狀態；使用者、志工與商家可補充回報，並以 GPS 地理圍欄（50 m）、Trust Score 與志工複核機制防止假資訊。</li>
+                        <li><b>商家認證與社交互助：</b>提供商家「無礙健康檢查表」與無礙認證 QR Code，並建立揪團「無礙聚」與「無礙領航員」勳章等遊戲化機制，鼓勵持續貢獻。</li>
+                        <li><b>平台建置與推廣：</b>以 PWA 架構開發（免下載、支援離線地圖緩存），後端採 Firebase；完成整合測試後，辦理 8 場志工與商家教育訓練，並推動商家合作與社群推廣。</li>
+                    </ol>
+
+                    <h3>預期成果</h3>
+                    <ul>
+                        <li>第一年累積全台數千筆精準的無障礙場域數據，吸引逾千名活躍使用者。</li>
+                        <li>無礙動態燈號的回報準確率目標維持在 95% 以上，介面符合 WCAG 2.1 AA 等級。</li>
+                        <li>建立餐飲「無障礙認證」合作體系，並培訓一支無障礙資訊志工團隊。</li>
+                        <li>以群眾外包與遊戲化機制維護資料，降低專職人員實地查核的人事成本，形成使用者、商家、志工三方共贏的生態系。</li>
+                    </ul>
+
+                    <h3>對應的 SDGs</h3>
+                    <ul class="sdg-reasons">
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-3)"><b>3</b>健康與福祉</span>
+                            <span>3.4 促進心理健康：打破「怕麻煩別人」的心理門檻，重建輪椅族的社交聯繫。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-10)"><b>10</b>減少不平等</span>
+                            <span>10.2 促進社會包容：消除環境資訊不透明造成的行動障礙，保障身障者的社會參與權。</span>
+                        </li>
+                        <li>
+                            <span class="sdg-tag" style="--c:var(--sdg-11)"><b>11</b>永續城鄉</span>
+                            <span>11.7 提供安全且包容的公共空間：以認證與評比促進商家主動改善無障礙設施。</span>
+                        </li>
+                    </ul>
+
+                    <div class="pdf-actions">
+                        <a class="download-btn" href="proposal/餓龍咆哮_Proposal-無礙同行v6.pdf" target="_blank" rel="noopener">瀏覽完整提案（PDF）</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="pagefoot" data-od-id="footer">
+        <div class="container pagefoot-inner">
+            <div>
+                <p class="footer-logo">永續媒合平台</p>
+                <p class="meta">串聯 NGO 永續發展專案與企業資源，攜手推動聯合國永續發展目標（SDGs）。</p>
+            </div>
+            <p class="meta">© 2026 永續媒合平台．All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="sdgs.js"></script>
+    <script src="projects.js"></script>
+    <script>
+    // 專案成果 / 提案列表 切換：tab 為要顯示的 section id（"projects" 或 "proposal"）
+    function changeTab(tab) {
+        document.querySelectorAll(".switch-tab").forEach(function (btn) {
+            var on = btn.dataset.tab === tab;
+            btn.classList.toggle("active", on);
+            btn.setAttribute("aria-selected", on ? "true" : "false");
+            document.getElementById(btn.dataset.tab).hidden = !on;
+        });
+    }
+
+    // 導覽列點「專案列表」／「提案列表」（#projects / #proposal）時同步切換分頁
+    function syncTabFromHash() {
+        var id = location.hash.replace(/^#/, "");
+        if (id === "projects" || id === "proposal") changeTab(id);
+    }
+    window.addEventListener("hashchange", syncTabFromHash);
+    syncTabFromHash();
+    </script>
+
+</body>
+</html>
