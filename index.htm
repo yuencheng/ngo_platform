@@ -19,6 +19,7 @@
             <nav aria-label="主選單">
                 <a href="#projects">專案成果</a>
                 <a href="#proposal">提案列表</a>
+                <a href="#events">活動</a>
                 <!-- <a href="#about">關於平台</a> -->
             </nav>
             <!-- <a class="btn btn-secondary" href="#about">與我們合作</a> -->
@@ -279,6 +280,25 @@
 
                     <!-- 篩選後若沒有符合已選目標的提案時顯示 -->
                     <p class="filter-empty" id="proposalEmpty" hidden>目前沒有提案對應已選取的 SDGs 目標。</p>
+                </div>
+            </section>
+
+            <!-- 活動列表：NGO 可自行上架活動（卡片由 events.js 依資料產生） -->
+            <section class="section" data-od-id="events" id="events">
+                <div class="container">
+                    <div class="section-head">
+                        <div>
+                            <p class="eyebrow eyebrow-muted">活動</p>
+                            <h2>近期活動</h2>
+                        </div>
+                        <div class="section-actions">
+                            <p class="lead section-note">NGO 舉辦的講座、志工招募與交流活動，企業與民眾都可以參加。</p>
+                            <button type="button" class="btn btn-primary" id="eventAddBtn">上架活動</button>
+                        </div>
+                    </div>
+
+                    <div class="events" id="eventList"></div>
+                    <p class="filter-empty" id="eventEmpty" hidden>目前還沒有活動。點「上架活動」新增第一個活動。</p>
                 </div>
             </section>
         </div>
@@ -964,6 +984,112 @@
         </article>
     </main>
 
+    <!-- ================= 上架活動表單 ================= -->
+    <dialog class="od-dialog" id="eventDialog" aria-labelledby="eventDialogTitle">
+        <form class="od-form" id="eventForm" novalidate>
+            <header class="od-dialog-head">
+                <h2 id="eventDialogTitle">上架活動</h2>
+                <button type="button" class="od-dialog-close" data-close aria-label="關閉">×</button>
+            </header>
+
+            <label class="field">
+                <span>活動名稱 <em>*</em></span>
+                <input type="text" name="title" required maxlength="80">
+            </label>
+            <label class="field">
+                <span>主辦單位 <em>*</em></span>
+                <input type="text" name="org" required maxlength="60">
+            </label>
+            <div class="field-row">
+                <label class="field">
+                    <span>日期 <em>*</em></span>
+                    <input type="date" name="date" required>
+                </label>
+                <label class="field">
+                    <span>時間</span>
+                    <input type="time" name="time">
+                </label>
+            </div>
+            <label class="field">
+                <span>地點 <em>*</em></span>
+                <input type="text" name="place" required maxlength="80" placeholder="例如：桃園市八德區忠信食物銀行／線上">
+            </label>
+            <label class="field">
+                <span>活動說明</span>
+                <textarea name="desc" rows="4" maxlength="400"></textarea>
+            </label>
+            <label class="field">
+                <span>報名連結</span>
+                <input type="url" name="link" placeholder="https://">
+            </label>
+            <fieldset class="field">
+                <legend>對應的 SDGs</legend>
+                <div class="sdg-picker" id="eventSdgPicker"></div>
+            </fieldset>
+
+            <p class="form-error" id="eventFormError" hidden></p>
+            <p class="meta form-note">雛型展示：資料只會儲存在目前的瀏覽器。</p>
+            <div class="od-dialog-actions">
+                <button type="button" class="btn btn-secondary" data-close>取消</button>
+                <button type="submit" class="btn btn-primary">上架</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- ================= 認領提案表單 ================= -->
+    <dialog class="od-dialog" id="claimDialog" aria-labelledby="claimDialogTitle">
+        <form class="od-form" id="claimForm" novalidate>
+            <header class="od-dialog-head">
+                <div>
+                    <h2 id="claimDialogTitle">認領提案</h2>
+                    <p class="od-dialog-sub" id="claimDialogTarget"></p>
+                </div>
+                <button type="button" class="od-dialog-close" data-close aria-label="關閉">×</button>
+            </header>
+
+            <label class="field">
+                <span>企業／單位名稱 <em>*</em></span>
+                <input type="text" name="company" required maxlength="60">
+            </label>
+            <div class="field-row">
+                <label class="field">
+                    <span>聯絡人 <em>*</em></span>
+                    <input type="text" name="contact" required maxlength="30">
+                </label>
+                <label class="field">
+                    <span>電話</span>
+                    <input type="tel" name="phone" maxlength="20">
+                </label>
+            </div>
+            <label class="field">
+                <span>Email <em>*</em></span>
+                <input type="email" name="email" required maxlength="80">
+            </label>
+            <label class="field">
+                <span>合作方式 <em>*</em></span>
+                <select name="type" required>
+                    <option value="">請選擇</option>
+                    <option>資金贊助</option>
+                    <option>技術支援</option>
+                    <option>人力志工</option>
+                    <option>場地／物資</option>
+                    <option>其他</option>
+                </select>
+            </label>
+            <label class="field">
+                <span>給 NGO 的留言</span>
+                <textarea name="message" rows="3" maxlength="300"></textarea>
+            </label>
+
+            <p class="form-error" id="claimFormError" hidden></p>
+            <p class="meta form-note">雛型展示：資料只會儲存在目前的瀏覽器，聯絡資訊不會公開顯示。</p>
+            <div class="od-dialog-actions">
+                <button type="button" class="btn btn-secondary" data-close>取消</button>
+                <button type="submit" class="btn btn-primary">確認認領</button>
+            </div>
+        </form>
+    </dialog>
+
     <footer class="pagefoot" data-od-id="footer">
         <div class="container pagefoot-inner">
             <div>
@@ -976,6 +1102,9 @@
 
     <script src="sdgs.js"></script>
     <script src="projects.js"></script>
+    <script src="store.js"></script>
+    <script src="events.js"></script>
+    <script src="claims.js"></script>
     <script>
     // 專案成果 / 提案列表 切換：tab 為要顯示的 section id（"projects" 或 "proposal"）
     function changeTab(tab) {

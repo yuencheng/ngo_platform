@@ -84,7 +84,7 @@ button { font: inherit; cursor: pointer; }
 p { text-wrap: pretty; margin: 0; }
 h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
 
-#top, #projects, #proposal, #about { scroll-margin-top: calc(var(--nav-h) + 16px); }
+#top, #projects, #proposal, #events, #about { scroll-margin-top: calc(var(--nav-h) + 16px); }
 
 a:focus-visible,
 button:focus-visible,
@@ -650,6 +650,198 @@ h3, .h3 {
 .pdf-actions { margin-top: var(--gap-lg); }
 .pdf-actions .download-btn { margin-top: 0; }
 
+/* ─── 提案認領：卡片上的狀態標籤、詳情頁的認領區塊 ─────────────────────── */
+.claim-slot { margin-bottom: 10px; }
+.claim-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 10px;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+.claim-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.claim-badge.is-claimed { border-color: var(--fg); background: var(--fg); color: var(--bg); }
+
+.claim-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-md);
+    flex-wrap: wrap;
+    margin-top: var(--gap-xl);
+    padding: var(--gap-md) var(--gap-lg);
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+}
+.claim-panel.is-claimed { border-color: var(--border); }
+.claim-info { display: grid; gap: 8px; flex: 1 1 280px; justify-items: start; }
+.claim-text { color: var(--muted); font-size: 15px; }
+.claim-text b { color: var(--fg); }
+
+/* ─── 活動列表 ────────────────────────────────────────────────────────── */
+.section-actions { display: grid; justify-items: start; gap: var(--gap-sm); }
+
+.events {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--gap-2xl);
+}
+.event-card {
+    display: flex;
+    flex-direction: column;
+    padding-block: var(--gap-lg) var(--gap-xl);
+    border-top: 1px solid var(--border);
+}
+.event-card.is-past { opacity: 0.6; }
+.event-when {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+}
+.event-card.is-past .event-when { color: var(--muted); }
+.event-status {
+    padding: 1px 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 11px;
+    color: var(--muted);
+}
+.event-title { font-size: 22px; line-height: 1.4; }
+.event-place { margin-top: 4px; font-size: 14px; color: var(--muted); }
+.event-place::before { content: "地點　"; font-family: var(--font-mono); font-size: 12px; }
+.event-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+    margin-top: auto;
+    padding-top: var(--gap-md);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+}
+.event-link { color: var(--fg); text-transform: uppercase; }
+.event-link::after { content: " →"; display: inline-block; transition: transform 0.15s ease; }
+.event-link:hover::after { transform: translateX(3px); }
+.event-remove {
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.event-remove:hover { color: var(--accent); }
+
+/* ─── 對話框與表單（上架活動／認領提案） ────────────────────────────────── */
+.od-dialog {
+    width: min(560px, calc(100vw - 32px));
+    max-height: calc(100dvh - 32px);
+    padding: 0;
+    border: 1px solid var(--fg);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    color: var(--fg);
+}
+.od-dialog::backdrop { background: color-mix(in oklch, var(--fg) 45%, transparent); }
+.od-form { display: grid; gap: var(--gap-md); padding: var(--gap-lg); }
+.od-dialog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--gap-md);
+    padding-bottom: var(--gap-sm);
+    border-bottom: 2px solid var(--fg);
+}
+.od-dialog-head h2 { font-size: 24px; }
+.od-dialog-sub { margin-top: 4px; font-size: 14px; color: var(--muted); }
+.od-dialog-close {
+    flex: none;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1;
+}
+.od-dialog-close:hover { border-color: var(--fg); color: var(--fg); }
+
+.field { display: grid; gap: 6px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.field > span,
+.field > legend { padding: 0; font-size: 14px; font-weight: 500; }
+.field em { font-style: normal; color: var(--accent); }
+.field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-md); }
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--fg);
+    font: inherit;
+    font-size: 15px;
+}
+.field textarea { resize: vertical; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+.sdg-picker { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
+.sdg-pick {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.sdg-pick input { position: absolute; opacity: 0; pointer-events: none; }
+.sdg-pick b {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--c);
+    color: var(--surface);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+.sdg-pick span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sdg-pick:hover { background: var(--fg-soft); }
+.sdg-pick:has(input:checked) { background: var(--fg); color: var(--bg); }
+.sdg-pick:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.form-error { color: var(--accent); font-size: 14px; font-weight: 500; }
+.form-error[hidden] { display: none; }
+.form-note { margin-top: -8px; }
+.od-dialog-actions { display: flex; justify-content: flex-end; gap: var(--gap-sm); }
+
 /* ─── about / closing ─────────────────────────────────────────────────── */
 .about-block h2 { margin-bottom: var(--gap-md); }
 .about-block .btn { margin-top: var(--gap-md); }
@@ -668,7 +860,7 @@ h3, .h3 {
 /* ─── responsive ──────────────────────────────────────────────────────── */
 @media (max-width: 920px) {
     :root { --gutter: 22px; --nav-h: 58px; }
-    .grid-2, .hero-grid, .projects, .proposals { grid-template-columns: 1fr; }
+    .grid-2, .hero-grid, .projects, .proposals, .events { grid-template-columns: 1fr; }
     .topnav nav { gap: var(--gap-md); }
     .topnav nav a { font-size: 13px; }
     .hero-grid { gap: var(--gap-xl); }
@@ -681,5 +873,7 @@ h3, .h3 {
 @media (max-width: 560px) {
     .topnav nav { display: none; }
     .filter-menu { grid-template-columns: 1fr; }
+    .field-row, .sdg-picker { grid-template-columns: 1fr; }
+    .od-form { padding: var(--gap-md); }
     .pagefoot-inner { flex-direction: column; gap: var(--gap-md); }
 }
