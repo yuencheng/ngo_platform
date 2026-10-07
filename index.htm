@@ -19,7 +19,7 @@
             <nav aria-label="主選單">
                 <a href="#projects">專案成果</a>
                 <a href="#proposal">提案列表</a>
-                <a href="#events">活動</a>
+                <!-- 暫時停用：活動功能 <a href="#events">活動</a> -->
                 <!-- <a href="#about">關於平台</a> -->
             </nav>
             <!-- <a class="btn btn-secondary" href="#about">與我們合作</a> -->
@@ -284,6 +284,7 @@
             </section>
 
             <!-- 活動列表：NGO 可自行上架活動（卡片由 events.js 依資料產生） -->
+            <!-- 暫時停用：活動功能（恢復時移除這段註解的開頭與結尾）
             <section class="section" data-od-id="events" id="events">
                 <div class="container">
                     <div class="section-head">
@@ -301,6 +302,7 @@
                     <p class="filter-empty" id="eventEmpty" hidden>目前還沒有活動。點「上架活動」新增第一個活動。</p>
                 </div>
             </section>
+            暫時停用：活動功能 結束 -->
         </div>
 
         <!-- ================= 專案詳情分頁 ================= -->
@@ -985,6 +987,7 @@
     </main>
 
     <!-- ================= 上架活動表單 ================= -->
+    <!-- 暫時停用：活動功能
     <dialog class="od-dialog" id="eventDialog" aria-labelledby="eventDialogTitle">
         <form class="od-form" id="eventForm" novalidate>
             <header class="od-dialog-head">
@@ -1035,8 +1038,10 @@
             </div>
         </form>
     </dialog>
+    暫時停用：活動功能 結束 -->
 
     <!-- ================= 認領提案表單 ================= -->
+    <!-- 暫時停用：提案認領功能
     <dialog class="od-dialog" id="claimDialog" aria-labelledby="claimDialogTitle">
         <form class="od-form" id="claimForm" novalidate>
             <header class="od-dialog-head">
@@ -1089,6 +1094,7 @@
             </div>
         </form>
     </dialog>
+    暫時停用：提案認領功能 結束 -->
 
     <footer class="pagefoot" data-od-id="footer">
         <div class="container pagefoot-inner">
@@ -1102,9 +1108,11 @@
 
     <script src="sdgs.js"></script>
     <script src="projects.js"></script>
+    <!-- 暫時停用：活動與提案認領功能
     <script src="store.js"></script>
     <script src="events.js"></script>
     <script src="claims.js"></script>
+    -->
     <script>
     // 專案成果 / 提案列表 切換：tab 為要顯示的 section id（"projects" 或 "proposal"）
     function changeTab(tab) {
