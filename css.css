@@ -854,7 +854,10 @@ h3, .h3 {
     font-size: 13px;
 }
 .pagefoot-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--gap-xl); flex-wrap: wrap; }
-.footer-logo { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
+.footer-brand { display: flex; align-items: center; flex-wrap: wrap; gap: var(--gap-sm) var(--gap-md); margin-bottom: 8px; }
+.footer-brand .footer-logo { margin-bottom: 0; }
+.footer-usr-logo { height: 40px; width: auto; }
+.footer-logo {font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
 .pagefoot .meta { max-width: 46ch; }
 
 /* ─── responsive ──────────────────────────────────────────────────────── */
