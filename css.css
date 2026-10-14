@@ -1148,7 +1148,7 @@ h3, .h3 {
 /* 關於平台：三種角色的價值卡片 */
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--gap-md);
 }
 /* 首頁頂部（#top）的平台簡介：給 NPO／給企業 兩張卡片，放在標語與圓盤下方 */
@@ -1175,6 +1175,16 @@ h3, .h3 {
 }
 .about-card-accent .about-card-tag { color: var(--accent); }
 .about-card h3 { margin: 4px 0 var(--gap-sm); }
+/* 卡片內的小標（例如「給企業」裡的「產出 ESG 報告」） */
+.about-card-sub {
+    margin: var(--gap-md) 0 var(--gap-xs);
+    padding-top: var(--gap-sm);
+    border-top: 1px dashed var(--border);
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+}
 .about-card ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
 .about-card li { color: var(--muted); font-size: 15px; line-height: 1.7; }
 
