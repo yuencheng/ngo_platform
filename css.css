@@ -238,6 +238,15 @@ h3, .h3 {
 }
 .hero-copy h1 { margin-bottom: var(--gap-md); }
 .hero-copy .lead { margin-bottom: var(--gap-lg); }
+/* 標語下的平台描述（NPO／企業／ESG）：字級比標語小一級，緊接在標語下方 */
+.hero-copy .lead:has(+ .hero-desc) { margin-bottom: var(--gap-sm); }
+.hero-desc {
+    max-width: 60ch;
+    margin-bottom: var(--gap-lg);
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--muted);
+}
 .hero-cta { display: flex; flex-wrap: wrap; gap: var(--gap-sm); }
 .hero-wheel { display: grid; justify-items: center; gap: var(--gap-md); }
 .hero-wheel-hint { text-align: center; }
@@ -886,6 +895,38 @@ h3, .h3 {
     width: 2px;
     height: calc(100% + 14px - 36px);
 }
+/* 專案階段 E0～E5：每一級兩行（名稱＋達成條件），圓點固定在左上，
+   連接線改由每個圓點往下畫到下一個圓點（上下各留 4px 空隙），不受每一級高度不同影響 */
+.stage-steps.is-levels { gap: 16px; }
+.stage-steps.is-levels .stage-step {
+    grid-template-columns: 28px auto 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    row-gap: 2px;
+}
+.stage-steps.is-levels .stage-dot { grid-row: 1 / span 2; align-self: start; font-size: 11px; }
+.stage-steps.is-levels .stage-desc {
+    grid-column: 2 / -1;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+.stage-steps.is-levels .stage-step.is-todo .stage-name,
+.stage-steps.is-levels .stage-step.is-todo .stage-desc { opacity: 0.75; }
+.stage-steps.is-levels .stage-step + .stage-step::before { content: none; }
+.stage-steps.is-levels .stage-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 32px;
+    bottom: -12px;
+    left: 13px;
+    width: 2px;
+    border-radius: 1px;
+    background: var(--border);
+}
+.stage-steps.is-levels .stage-step.is-done::after { background: var(--accent); }
+
 /* 目前階段的光暈縮小，避免碰到上下的連接線 */
 .stage-steps.is-vertical .stage-step.is-current .stage-dot { box-shadow: 0 0 0 3px var(--accent-soft); }
 
@@ -1090,8 +1131,98 @@ h3, .h3 {
 .od-dialog-actions { display: flex; justify-content: flex-end; gap: var(--gap-sm); }
 
 /* ─── about / closing ─────────────────────────────────────────────────── */
+/* 區塊分隔線：放在 .container 內，與內容同寬（不像 .section + .section 的框線滿版）。
+   區塊上方不留內距，讓線剛好在區塊開頭，線與內容的距離沿用 .section 的上下內距 */
+.section-rule {
+    height: 0;
+    margin: 0 0 clamp(48px, 7vw, 88px);
+    border: 0;
+    border-top: 1px solid var(--border);
+}
+/* 有自己的分隔線時，取消 .section + .section 的滿版框線，避免出現兩條線 */
+.section:has(> .container > .section-rule:first-child) { padding-top: 0; border-top: 0; }
+
 .about-block h2 { margin-bottom: var(--gap-md); }
 .about-block .btn { margin-top: var(--gap-md); }
+
+/* 關於平台：三種角色的價值卡片 */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-md);
+}
+/* 首頁頂部（#top）的平台簡介：給 NPO／給企業 兩張卡片，放在標語與圓盤下方 */
+.hero-roles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-md);
+    margin-top: var(--gap-xl);
+}
+.about-card {
+    padding: var(--gap-md) var(--gap-lg) var(--gap-lg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--fg);
+    border-radius: var(--radius);
+}
+.about-card-accent { border-top-color: var(--accent); }
+.about-card-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.about-card-accent .about-card-tag { color: var(--accent); }
+.about-card h3 { margin: 4px 0 var(--gap-sm); }
+.about-card ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
+.about-card li { color: var(--muted); font-size: 15px; line-height: 1.7; }
+
+/* 關於平台：媒合流程 */
+.about-flow-title { margin: var(--gap-xl) 0 var(--gap-md); }
+.about-flow {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 2px solid var(--fg);
+}
+.about-flow li {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    padding: var(--gap-md) var(--gap-md) 0 0;
+}
+.about-flow li + li { padding-left: var(--gap-md); border-left: 1px solid var(--border); }
+.about-flow-num { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: var(--accent); }
+.about-flow b { font-family: var(--font-display); font-size: 18px; font-weight: 600; }
+.about-flow li > span:last-child { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+/* 關於平台：成果揭露原則（資訊提示，沿用專案進程的 i 圖示） */
+.about-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: var(--gap-xl);
+    padding: 14px 18px;
+    background: var(--fg-soft);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--muted);
+    border-radius: var(--radius);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+@media (max-width: 920px) {
+    .about-grid, .hero-roles { grid-template-columns: 1fr; }
+    .about-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--gap-md); }
+    .about-flow li:nth-child(odd) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 560px) {
+    .about-flow { grid-template-columns: 1fr; }
+    .about-flow li + li { padding-left: 0; border-left: 0; padding-top: var(--gap-sm); border-top: 1px solid var(--border); }
+}
 
 /* ─── footer ──────────────────────────────────────────────────────────── */
 .pagefoot {

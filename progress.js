@@ -21,13 +21,18 @@
         { key: "verified",  zh: "成效驗證", en: "Impact Verified" }
     ];
 
-    // 證據等級
-    var EVIDENCE = {
-        E0: { en: "Idea",      zh: "構想階段" },
-        E1: { en: "Concept",   zh: "提案有據" },
-        E2: { en: "Pilot",     zh: "試行數據" },
-        E3: { en: "Validated", zh: "成效驗證" }
-    };
+    // 證據等級 E0～E5：依序排列，專案進程的進度條依 data-evidence 標出目前所在的等級。
+    // rule：達到這個等級的條件
+    var LEVELS = [
+        { key: "E0", en: "Incomplete",       zh: "資料待補",       rule: "尚不符合 E1" },
+        { key: "E1", en: "Concept",          zh: "提案有據",       rule: "完整已提交提案、來源附件或版本定位" },
+        { key: "E2", en: "Expert Reviewed",  zh: "專家已審查",     rule: "E1＋當前 proposal_revision 的 expert_review 通過" },
+        { key: "E3", en: "NPO Validated",    zh: "場域需求已確認", rule: "E2＋當前 proposal_revision 的 npo_validation 通過" },
+        { key: "E4", en: "Implemented",      zh: "已有實施證據",   rule: "E3＋至少一筆 NPO 確認的完成實施紀錄" },
+        { key: "E5", en: "Outcome Verified", zh: "指定成果已驗證", rule: "E4＋報表凍結範圍內完整驗證，且無失效紀錄" }
+    ];
+    var EVIDENCE = {};
+    LEVELS.forEach(function (lv) { EVIDENCE[lv.key] = lv; });
 
     // 成果狀態；tone 決定標籤樣式（預期成果以虛線框表示「尚未實現」）
     var OUTCOMES = {
@@ -58,7 +63,7 @@
         return div;
     }
 
-    // 成熟度進度條：已完成 / 目前 / 未完成 三種狀態
+    // 成熟度進度條（橫式，已停用）：已完成 / 目前 / 未完成 三種狀態
     function stepper(current) {
         var ol = el("ol", "stage-steps");
         ol.setAttribute("aria-label", "專案成熟度");
@@ -74,6 +79,23 @@
         return ol;
     }
 
+    // 專案階段進度條（E0～E5，直式）：每一級顯示名稱與達成條件
+    function levelStepper(current) {
+        var ol = el("ol", "stage-steps is-vertical is-levels");
+        ol.setAttribute("aria-label", "專案階段（證據等級 E0～E5）");
+        LEVELS.forEach(function (lv, i) {
+            var state = i < current ? "is-done" : i === current ? "is-current" : "is-todo";
+            var li = el("li", "stage-step " + state);
+            if (i === current) li.setAttribute("aria-current", "step");
+            li.appendChild(el("span", "stage-dot", lv.key));
+            li.appendChild(el("span", "stage-name", lv.zh));
+            if (i === current) li.appendChild(el("span", "stage-now", "目前"));
+            li.appendChild(el("span", "stage-desc", lv.en + "｜" + lv.rule));
+            ol.appendChild(li);
+        });
+        return ol;
+    }
+
     document.querySelectorAll(".project-page[data-stage]").forEach(function (page) {
         var d = page.dataset;
         var index = -1;
@@ -81,6 +103,8 @@
         if (index === -1) return;
         var stage = STAGES[index];
         var evidence = EVIDENCE[d.evidence];
+        // 目前所在的證據等級（E0～E5 的位置），進度條與卡片都用這個
+        var level = evidence ? LEVELS.indexOf(evidence) : -1;
         var outcome = OUTCOMES[d.outcome];
 
         /* 暫時停用：橫式專案進程（放在頁首標題下方、與頁首同寬），已改用下方的直式版本
@@ -163,14 +187,14 @@
             aside.appendChild(list);
             if (stage.summary) aside.appendChild(el("p", "status-summary", stage.summary));
 
-            // 直式成熟度進度條
-            var mHead = el("div", "status-maturity-head");
-            mHead.appendChild(el("span", null, "專案成熟度"));
-            mHead.appendChild(el("span", null, (index + 1) + " / " + STAGES.length));
-            aside.appendChild(mHead);
-            var steps = stepper(index);
-            steps.classList.add("is-vertical");
-            aside.appendChild(steps);
+            // 專案階段進度條：E0～E5
+            if (level !== -1) {
+                var mHead = el("div", "status-maturity-head");
+                mHead.appendChild(el("span", null, "專案階段"));
+                mHead.appendChild(el("span", null, evidence.key + " / E" + (LEVELS.length - 1)));
+                aside.appendChild(mHead);
+                aside.appendChild(levelStepper(level));
+            }
 
             // 成果狀態提示（資訊提醒，不是警告）
             if (d.outcome === "expected") {
@@ -191,19 +215,18 @@
             layout.appendChild(aside);
         }
 
-        // ---- 卡片：迷你進程（目前階段＋證據等級） ----
+        // ---- 卡片：迷你進程（目前所在的 E0～E5 等級） ----
         var link = document.querySelector('.project-open[href="#' + page.id + '"]');
         var card = link && link.closest(".project");
-        if (card) {
+        if (card && level !== -1) {
             var mini = el("p", "stage-mini");
             var bar = el("span", "stage-mini-bar");
             bar.setAttribute("aria-hidden", "true");
-            STAGES.forEach(function (s, i) {
-                bar.appendChild(el("i", i <= index ? "is-on" : ""));
+            LEVELS.forEach(function (lv, i) {
+                bar.appendChild(el("i", i <= level ? "is-on" : ""));
             });
             mini.appendChild(bar);
-            mini.appendChild(el("span", null,
-                stage.zh + "（" + (index + 1) + "/" + STAGES.length + "）" + (d.evidence ? " · " + d.evidence : "")));
+            mini.appendChild(el("span", null, evidence.key + " " + evidence.zh));
             var anchor = card.querySelector(".sdg-tags") || card.querySelector(".project-more");
             card.insertBefore(mini, anchor);
         }
